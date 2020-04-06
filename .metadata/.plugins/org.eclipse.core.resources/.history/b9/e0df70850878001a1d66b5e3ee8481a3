@@ -1,0 +1,24 @@
+package com.example.servingwebcontent;
+
+import java.util.List;
+
+import com.example.servingwebcontent.a_user;
+import com.example.servingwebcontent.account;
+
+public interface Dao {
+
+List<a_user> findAll();
+
+void adda_user(a_user user);
+
+public void deletea_user(a_user user);
+
+void executeUpdatea_ser(a_user user);
+
+void addAccount(account account);
+
+void despositMoney(account account);
+
+void withdrawMoney(account account);
+
+}

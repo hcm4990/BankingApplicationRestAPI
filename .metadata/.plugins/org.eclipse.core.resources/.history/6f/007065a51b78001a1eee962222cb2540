@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Your User</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<br>
+	<p>Welcome to your user. Log into your bank account, or make a new one</p>
+	<br>
+	<br>
+	<p><p>Log into your user!</p>
+	<form action="/login">
+		<label for="user_id">Account Username:</label> <input type="text" id="user_id"
+			name="user_id"><br> <br>
+		<label for="pass_word">Account Password:</label> <input type="text" id="pass_word"
+			name="pass_word"><br>
+		<br> <input type="submit" value="Submit">
+	</form>
+	<form action="/newAccount">
+		<label for="pass_word">I want to make a new account!</label><br>
+		<br> <input type="submit" value="Submit">
+	</form>
+</body>
+</html>

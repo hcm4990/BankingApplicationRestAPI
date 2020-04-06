@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<p>
+		Hello! Get your greeting at <a href="/greeting">here</a>
+	</p>
+	<br>
+	<p>Database/Rest API linking is not complete. But, back-end is pretty thorough for the code.</p>
+	<br>
+	<form action="/transaction">
+		<label for="transaction_id">transaction_id:</label> <input type="text" id="transaction_id"
+			name="fname"><br>
+		<br> <label for="amount">amount:</label> <input type="text"
+			id="amount" name="amount"><br>
+		<br> <input type="submit" value="Submit">
+	</form>
+</body>
+</html>

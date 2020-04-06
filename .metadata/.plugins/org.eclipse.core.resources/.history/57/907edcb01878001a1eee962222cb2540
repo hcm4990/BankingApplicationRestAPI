@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<br>
+	<p>Database/Rest API linking is not complete. But, back-end is pretty thorough for the code.</p>
+	<br>
+	<br>
+	<p><p>Log into your account!</p>
+	<form action="/transaction">
+		<label for="user_id">Username:</label> <input type="text" id="transaction_id"
+			name="fname"><br>
+		<label for="transaction_id">Password:</label> <input type="text" id="transaction_id"
+			name="fname"><br>
+		<br> <label for="amount">amount:</label> <input type="text"
+			id="amount" name="amount"><br>
+		<br> <input type="submit" value="Submit">
+	</form>
+</body>
+</html>

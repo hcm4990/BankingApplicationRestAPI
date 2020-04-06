@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p>Hello! Get your greeting at <a href="/greeting">here</a></p>
+    <br>
+    <p>The database changing etc will be done after it is implemented.</p>
+</body>
+</html>
