@@ -1,0 +1,23 @@
+package com.example.servingwebcontent;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class account {
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer account_id;
+    private String user_id;
+    private Integer balance;
+
+	public Integer getaccount_id() { return account_id; }
+	public void setaccount_id(Integer account_id) { this.account_id = account_id; }
+	
+	public String getuser_name() { return user_name; }
+	public void setuser_name(String user_name) { this.user_name = user_name; }
+
+	public Integer getnum_of_accts() { return num_of_accts; }
+	public void setnum_of_accts(Integer num_of_accts) { this.num_of_accts = num_of_accts; }
+	//Getter/Setters for rest of fields, etc...
+}

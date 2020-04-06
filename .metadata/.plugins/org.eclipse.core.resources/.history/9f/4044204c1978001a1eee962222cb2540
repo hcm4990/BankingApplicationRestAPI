@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<br>
+	<p>Welcome to your bank account. Make a withdrawal/desposit, or take a loan</p>
+	<br>
+	<br>
+	<p><p>Log into your user!</p>
+	<form action="/transaction">
+		<label for="user_id">Username:</label><br>
+		<label for="pass_word">Password:</label> <input type="text" id="pass_word"
+			name="pass_word"><br>
+		<br> <input type="submit" value="Submit">
+	</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+Test set: com.example.servingwebcontent.ServingnWebContentApplicationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.851 s <<< FAILURE! - in com.example.servingwebcontent.ServingnWebContentApplicationTest
+homePage  Time elapsed: 0.541 s  <<< FAILURE!
+java.lang.AssertionError: 
+Response content
+Expected: a string containing "Get your greeting"
+     but: was "<!DOCTYPE HTML>
+<html>
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<br>
+	<p>Database/Rest API linking is not complete. But, back-end is pretty thorough for the code. Database Tables etc are existent.</p>
+	<br>
+	<br>
+	<p><p>Log into your user!</p>
+	<form action="/transaction">
+		<label for="user_id">Username:</label> <input type="text" id="user_id"
+			name="user_id"><br> <br>
+		<label for="pass_word">Password:</label> <input type="text" id="pass_word"
+			name="pass_word"><br>
+		<br> <input type="submit" value="Submit">
+	</form>
+</body>
+</html>
+"
+	at com.example.servingwebcontent.ServingnWebContentApplicationTest.homePage(ServingnWebContentApplicationTest.java:39)
+

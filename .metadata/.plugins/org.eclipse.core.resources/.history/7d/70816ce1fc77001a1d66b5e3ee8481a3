@@ -1,0 +1,26 @@
+package com.example.servingwebcontent;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity // This tells Hibernate to make a table out of this class
+public class a_user {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Integer user_id;
+    private String user_name;
+    private String pass_word;
+    private Integer num_of_accts;
+
+	public Integer getUserID() {
+		return user_id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	//Getter/Setters for rest of fields, etc...
+    
+}

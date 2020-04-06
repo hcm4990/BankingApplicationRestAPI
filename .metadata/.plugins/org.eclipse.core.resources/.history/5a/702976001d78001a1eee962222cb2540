@@ -1,0 +1,85 @@
+package com.example.servingwebcontent;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.servingwebcontent.Repository;
+
+@Controller
+public class TheController {
+	@Autowired
+	private Repository repository;
+	
+	account n = new account();
+
+	@PostMapping(path="/newAccount{accounts_id}") // Map ONLY POST Requests
+	  public @ResponseBody void addNewAccount (@RequestParam Integer account_id, @RequestParam String user_id, @RequestParam Integer balance) {
+	    // @ResponseBody means the returned String is the response, not a view name
+	    // @RequestParam means it is a parameter from the GET or POST request
+	    n.setaccount_id(account_id);
+	    n.setuser_id(user_id);
+	    n.setbalance(balance);
+	    repository.save(n);
+	  }
+	
+	@PostMapping(path="/newUser{user_id}") // Map ONLY POST Requests
+	  public @ResponseBody void addNewUser (@RequestParam Integer user_id, @RequestParam String user_name, @RequestParam String pass_word,
+			  @RequestParam Integer num_of_accts) {
+	    // @ResponseBody means the returned String is the response, not a view name
+	    // @RequestParam means it is a parameter from the GET or POST request
+	    a_user n = new a_user();
+	    n.setuser_id(user_id);
+	    n.setuser_name(user_name);
+	    n.setpass_word(pass_word);
+	    n.setnum_of_accts(num_of_accts);
+	    repository.save(n);
+	  }
+	
+	@DeleteMapping(path="/deleteUser/{user_id}") // Map ONLY POST Requests
+	  public @ResponseBody void deleteUser (@RequestParam Integer user_id, @RequestParam String user_name, @RequestParam String pass_word,
+			  @RequestParam Integer num_of_accts) {
+	    // @ResponseBody means the returned String is the response, not a view name
+	    // @RequestParam means it is a parameter from the GET or POST request
+	    a_user n = new a_user();
+	    n.setuser_id(null);
+	    n.setuser_name(null);
+	    n.setpass_word(null);
+	    n.setnum_of_accts(null);
+	    repository.save(n);
+	  }
+	
+	@PostMapping(path="/withdrawal{account_id}") // Map ONLY POST Requests
+	public @ResponseBody void withdrawMoney(@RequestParam Integer transaction_id, @RequestParam Integer amount, @RequestParam Integer account_id) {
+	    // @ResponseBody means the returned String is the response, not a view name
+	    // @RequestParam means it is a parameter from the GET or POST request
+		
+	    repository.save(n);
+	  }
+
+	@PostMapping(path="/deposit{account_id}") // Map ONLY POST Requests
+	  public @ResponseBody void despositMoney(@RequestParam Integer transaction_id, @RequestParam Integer amount, @RequestParam Integer account_id) {
+	    // @ResponseBody means the returned String is the response, not a view name
+	    // @RequestParam means it is a parameter from the GET or POST request
+		
+	    repository.save(n);
+	  }
+	
+	@PostMapping(path="/loan{account_id}") // Map ONLY POST Requests
+	public @ResponseBody void loanMoney(@RequestParam Integer loan_id, @RequestParam Integer amount, @RequestParam Integer account_id) {
+	    // @ResponseBody means the returned String is the response, not a view name
+	    // @RequestParam means it is a parameter from the GET or POST request
+
+	    repository.save(n);
+	  }
+	
+	
+
+}

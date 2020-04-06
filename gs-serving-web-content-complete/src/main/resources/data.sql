@@ -1,0 +1,1 @@
+insert into a_user(user_id, user_name, pass_word, num_of_accts) values(325252, 'test2', 'test2', 0);

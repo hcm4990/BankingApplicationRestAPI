@@ -1,0 +1,19 @@
+package com.example.servingwebcontent;
+
+import java.util.List;
+
+import com.example.servingwebcontent.a_user;
+
+public interface Dao {
+
+List<a_user> findAll();
+
+void addUser(a_user user);
+
+void updateEmployee(a_user user);
+
+void executeUpdateEmployee(a_user emp);
+
+public void deleteEmployee(a_user emp);
+
+}

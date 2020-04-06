@@ -1,0 +1,183 @@
+package com.example.servingwebcontent;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+import com.example.servingwebcontent.a_user;
+import com.example.servingwebcontent.Mapper;
+
+@Repository
+
+public class DaoImplementation implements Dao{
+
+	public DaoImplementation(NamedParameterJdbcTemplate template) {  
+		this.template = template;  
+	}  
+
+	NamedParameterJdbcTemplate template;  
+
+	@Override
+	public void adda_user(a_user a_user) {
+		final String sql = "insert into a_user(user_id, user_name, pass_word, num_of_accts) values(:user_id, :user_name, :pass_word, :num_of_accts);";
+
+		KeyHolder holder = new GeneratedKeyHolder();
+		SqlParameterSource param = new MapSqlParameterSource()
+				.addValue("user_id", com.example.servingwebcontent.a_user.getuser_id())
+				.addValue("user_name", a_user.getuser_name())
+				.addValue("pass_word", a_user.getpass_word())
+				.addValue("num_of_accts", a_user.getnum_of_accts());
+
+		template.update(sql, param, holder);
+	}
+
+	@Override
+	public void executeUpdatea_user(a_user a_user) {
+
+		final String sql = "update a_user set user_id=:user_id, user_name=:user_name, pass_word=:pass_word where num_of_accts=:num_of_accts";
+
+		Map<String, Object> map=new HashMap<String, Object>();  
+
+		map.put("user_id", com.example.servingwebcontent.a_user.getuser_id());
+		map.put("user_name", a_user.getuser_name());
+		map.put("pass_word", a_user.getpass_word());
+		map.put("num_of_accts", a_user.getnum_of_accts());
+
+		template.execute(sql, map, new PreparedStatementCallback<Object>() {  
+
+			@Override  
+			public Object doInPreparedStatement(PreparedStatement ps)  
+					throws SQLException, DataAccessException {  
+				return ps.executeUpdate();  
+			}  
+		});  
+	}
+
+	@Override
+
+	public void deletea_user(a_user user) {
+
+		final String postgresql = "delete from a_user where user_id=:user_id";
+
+		Map<String, Object> map=new HashMap<String,Object>();  
+
+		map.put("a_user", a_user.getuser_id());
+
+		template.execute(postgresql, map, new PreparedStatementCallback<Object>() {  
+
+			@Override  
+			public Object doInPreparedStatement(PreparedStatement ps)  
+					throws SQLException, DataAccessException {  
+				return ps.executeUpdate();  
+			}  
+		});  
+	}
+
+
+	@Override
+	public void addAccount(a_user a_user, account account) {
+		if (a_user.getnum_of_accts() < 3) {
+			final String postgresql = "insert into account(account_id, user_id, balance, owed) values(:account_id, :user_id, :balance, :owed);";
+
+			KeyHolder holder = new GeneratedKeyHolder();
+			
+			Map<String, Object> map=new HashMap<String, Object>();  
+			
+			SqlParameterSource param = new MapSqlParameterSource()
+					.addValue("account_id", account.getaccount_id())
+					.addValue("user_id", account.getuser_id())
+					.addValue("balance", account.getbalance())
+					.addValue("owed", account.getowed());
+
+			template.update(postgresql, param, holder);
+		}
+	}
+
+	@Override
+	public void despositMoney(account account, transaction transaction) {
+
+			final String money = "insert into transaction(transaction_id, account_id, amount, done) values(:transaction_id, :account_id, :user_id, :amount, :done);";
+			final String update = "Update account set balance = balance + (SELECT amount from transaction where account.account_id = transaction.account_id and transaction.done = false)";
+			final String setTrue = "Update transaction set done = true";
+
+			KeyHolder holder = new GeneratedKeyHolder();
+			
+			Map<String, Object> map=new HashMap<String, Object>();
+			
+			map.put("balance", account.getbalance());
+
+			template.execute(money, map, new PreparedStatementCallback<Object>() {  
+				@Override  
+				public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {  
+					return ps.executeUpdate();   }  });
+			template.execute(update, map, new PreparedStatementCallback<Object>() {  
+				@Override  
+				public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {  
+					return ps.executeUpdate();   }  });
+			template.execute(setTrue, map, new PreparedStatementCallback<Object>() {  
+				@Override  
+				public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {  
+					return ps.executeUpdate();   }  });
+	}
+
+	@Override
+	public void withdrawMoney(account account, transaction transaction) {
+		if (account.getbalance() > transaction.getamount()) {
+			final String money = "insert into transaction(transaction_id, account_id, amount, done) values(:transaction_id, :account_id, :user_id, :amount, :done);";
+			final String update = "Update account set balance = balance - (SELECT amount from transaction where account.account_id = transaction.account_id and transaction.done = false)";
+			final String setTrue = "Update transaction set done = true";
+
+			KeyHolder holder = new GeneratedKeyHolder();
+			
+			Map<String, Object> map=new HashMap<String, Object>();
+			
+			map.put("balance", account.getbalance());
+
+			template.execute(money, map, new PreparedStatementCallback<Object>() {  
+				@Override  
+				public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {  
+					return ps.executeUpdate();   }  });
+			template.execute(update, map, new PreparedStatementCallback<Object>() {  
+				@Override  
+				public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {  
+					return ps.executeUpdate();   }  });
+			template.execute(setTrue, map, new PreparedStatementCallback<Object>() {  
+				@Override  
+				public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {  
+					return ps.executeUpdate();   }  });
+		}
+	}
+
+	@Override
+	public void giveLoan(account account, loan loan) {
+		if (account.getbalance()*2 > loan.getamount()) {
+			final String loan = "insert into loan(account_id, user_id, balance) values(:account_id, :user_id, :pass_word, :balance);";
+
+			KeyHolder holder = new GeneratedKeyHolder();
+			
+			Map<String, Object> map=new HashMap<String, Object>();
+			
+			map.put("balance", account.getbalance());
+
+			template.execute(loan, map, new PreparedStatementCallback<Object>() {  
+
+				@Override  
+				public Object doInPreparedStatement(PreparedStatement ps)  
+						throws SQLException, DataAccessException {  
+					return ps.executeUpdate();  
+				}  
+			});
+		}
+
+	}
+
+}
