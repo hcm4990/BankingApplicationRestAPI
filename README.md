@@ -4,6 +4,8 @@ Application is mostly complete, but had some issues with connecting the Spring B
 
 This banking application has a Rest API via Spring Boot in Java. It has functions such as adding a user, opening an account, depositing/withdrawing money, and approving a loan with preconditions.
 
+The bulk of the code is in \gs-serving-web-content-complete\src\main\java\com\example\servingwebcontent\. There are also three html files in \gs-serving-web-content-complete\src\main\java\com\example\resources\static\ though.
+
 Steps:
 
 1. First design your database tables:
